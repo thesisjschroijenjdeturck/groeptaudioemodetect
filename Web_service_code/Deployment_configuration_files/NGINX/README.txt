@@ -1,0 +1,1 @@
+Please place the emodetectapp file in the sites-enabled directory of your Nginx configuration directory

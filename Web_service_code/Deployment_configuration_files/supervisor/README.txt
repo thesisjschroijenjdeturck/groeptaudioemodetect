@@ -1,0 +1,1 @@
+Please add the emodetectapp.conf file under /etc/supervisor/conf.d (or the conf.d directory of supervisor whereever supervisor lives)

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Predictor Manager</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" contents="width = device-width; initial-scale = 1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='main.css' ) }}" />
+  </head>
+  <body>
+    <main role="main" class="container">
+      <div class="page-header">
+        <h1>Predictor Manager</h1>
+      </div>
+      <div class="jumbotron">
+        <p>
+          Upload Python predictor objects that implement a Scikit-learn like predict() method!<br />
+          Select one of the predictor objects you have uploaded to be used by the prediction service.
+        </p>
+      </div>
+      <form method="POST" action="">
+        {{ predictorSelectorForm.hidden_tag() }}
+        <fieldset>
+          <legend>Select Active Predictor</legend>
+          <div class="form-group">
+            {% for predictorButton in predictorSelectorForm.predictor %}
+              <div class="form-check">
+              {{ predictorButton( class="form-check-input" ) }} 
+              {{ predictorButton.label( class="form-check-label" ) }}              
+              </div>
+            {% endfor %}
+          </div>
+          <button type="submit" class="btn btn-primary">Apply selection</button>
+        </fieldset>
+      </form>
+      <hr />
+      <form method="POST" action="" enctype="multipart/form-data">
+        {{ predictorUploadForm.hidden_tag() }}
+        <fieldset>
+          <legend>Upload a new predictor pickle file</legend>
+          <div class="form-group">
+            {{ predictorUploadForm.predictorName.label( class="form-control-label" ) }}
+          
+            {% if predictorUploadForm.predictorName.errors %}
+            {{ predictorUploadForm.predictorName( class="form-control is-invalid" ) }}
+            <div class="invalid-feedback">
+            {% for error in predictorUploadForm.predictorName.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            </div>
+            {% else %}
+            {{ predictorUploadForm.predictorName( class="form-control" ) }}
+            {% endif %}  
+          </div>
+          <div class="form-group">
+            {{ predictorUploadForm.arousalPredictorFileSelector.label( class="form-control-label" ) }}
+            {{ predictorUploadForm.arousalPredictorFileSelector( class="form-control-file" ) }}
+            {% if predictorUploadForm.arousalPredictorFileSelector.errors %}
+              {% for error in predictorUploadForm.arousalPredictorFileSelector.errors %}
+                <span class="text-danger">{{ error }}</span><br />
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ predictorUploadForm.valencePredictorFileSelector.label( class="form-control-label" ) }}
+            {{ predictorUploadForm.valencePredictorFileSelector ( class="form-control-file" ) }}
+            {% if predictorUploadForm.valencePredictorFileSelector.errors %}
+              {% for error in predictorUploadForm.valencePredictorFileSelector.errors %}
+                <span class="text-danger">{{ error }}</span><br />
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ predictorUploadForm.principalComponentTransformerFileSelector.label( class="form-control-label" ) }}
+            {{ predictorUploadForm.principalComponentTransformerFileSelector( class="form-control-file" ) }}
+            {% if predictorUploadForm.principalComponentTransformerFileSelector.errors %}
+              {% for error in predictorUploadForm.principalComponentTransformerFileSelector.errors %}
+                <span class="text-danger">{{ error }}</span><br />
+              {% endfor %}
+            {% endif %}
+          </div>
+          {{ predictorUploadForm.submit( class="btn btn-primary" ) }}
+        </fieldset>  
+      </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
