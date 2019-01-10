@@ -5,3 +5,5 @@ This repository contains all source code of the thesis A smartphone application 
 **All the code in this repository is the (intellectual) property of, and all copyright on it is held by, KULeuven. Any use of it needs to be approved by the university. Only the permission to host our relatively large codebase on a Github repository for internal KULeuven usage was kindly granted by our promotor.**
 
 This codebase makes use of the following external libraries and applications: TarsosDSP, FFmpeg, Gson, Keras, TensorFlow, Scikit-learn, the ESAT LS-SVM toolbox, GNU Octave, Flask and Flask-WTF.
+
+Leuven, January 2019
